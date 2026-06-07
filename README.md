@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Yoga Studio Management MVP
 
-## Getting Started
+A lightweight system for managing yoga studio operations including courses, students, enrollments, and attendance tracking.
 
-First, run the development server:
+This project is designed as a real-world SaaS-style MVP for a small yoga studio to replace manual tracking (Excel / paper / messaging apps).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Problem
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Yoga studios often manage:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Student attendance manually
+- Remaining session tracking in Excel or notebooks
+- Class participation via WhatsApp or paper lists
 
-## Learn More
+This leads to:
 
-To learn more about Next.js, take a look at the following resources:
+- Human errors
+- Time-consuming administration
+- Lack of visibility on student progress
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Solution
 
-## Deploy on Vercel
+A simple system that digitizes:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Course management
+- Student management
+- Enrollment (10-session model)
+- Attendance tracking
+- Automatic remaining session calculation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🧩 MVP Features
+
+- Create and manage courses
+- Add and manage students
+- Enroll students into courses
+- Daily attendance tracking
+- Mark presence / absence
+- Save or deduct sessions based on attendance rules
+- View student progress (remaining sessions)
+
+---
+
+## 🛠 Tech Stack
+
+- Next.js (App Router)
+- TypeScript
+- TailwindCSS
+- Prisma ORM
+- PostgreSQL (or SQLite for development)
+
+---
+
+## 📁 Project Structure
+
+See `/docs` for full architecture and product documentation.
+
+---
+
+## 📌 Status
+
+This is an MVP version focused on validating real studio workflows before scaling into a full SaaS product.
+
+---
+
+## 📖 Documentation
+
+All product and system design documents are available in the `/docs` folder:
+
+- PRD
+- Database design
+- Business rules
+- Roadmap
+
+---
+
+## 🔮 Future Ideas
+
+- Payment system
+- SMS / WhatsApp reminders
+- Multi-studio SaaS support
+- Coach dashboard
+- Analytics
