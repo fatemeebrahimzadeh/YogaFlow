@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome check",
-    "format": "biome format --write"
+    "format": "biome format --write",
+    "release": "standard-version",
+    "push-release": "git push --follow-tags origin master",
+    "release:full": "standard-version && git push --follow-tags origin master",
   },
   "dependencies": {
     "next": "16.2.7",
@@ -20,6 +23,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "standard-version": "^9.5.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
