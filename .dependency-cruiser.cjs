@@ -47,19 +47,44 @@ module.exports = {
         path: "^src/lib/",
       },
       to: {
-        path: "^src/(?:app|components)/",
+        path: "^src/(?:app|components|features)/",
       },
     },
     {
-      name: "ui-components-must-not-import-app",
+      name: "features-must-not-import-app",
       severity: "error",
       comment:
-        "Reusable UI primitives should not depend on routes, layouts, or page-level code.",
+        "Feature modules should not depend on route files; routes compose features.",
+      from: {
+        path: "^src/features/",
+      },
+      to: {
+        path: "^src/app/",
+      },
+    },
+    {
+      name: "features-must-not-import-sibling-features",
+      severity: "error",
+      comment:
+        "Keep features independent. Share cross-feature code through src/lib or explicitly approved shared modules.",
+      from: {
+        path: "^src/features/([^/]+)/",
+      },
+      to: {
+        path: "^src/features/",
+        pathNot: "^src/features/$1/",
+      },
+    },
+    {
+      name: "ui-components-must-not-import-app-or-features",
+      severity: "error",
+      comment:
+        "Reusable UI primitives should not depend on routes, layouts, page-level code, or product features.",
       from: {
         path: "^src/components/ui/",
       },
       to: {
-        path: "^src/app/",
+        path: "^src/(?:app|features)/",
       },
     },
     {
@@ -74,6 +99,7 @@ module.exports = {
           "^src/app/(?:layout|page)\\.tsx$",
           "^src/app/globals\\.css$",
           "^src/app/favicon\\.ico$",
+          "^src/features/[^/]+/index\\.ts$",
         ],
       },
       to: {},
