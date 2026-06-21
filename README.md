@@ -4,6 +4,8 @@ A lightweight system for managing yoga studio operations including courses, stud
 
 This project is designed as a real-world SaaS-style MVP for a small yoga studio to replace manual tracking (Excel / paper / messaging apps).
 
+Live deployment: https://yoga-flow-m4rv.vercel.app/
+
 ---
 
 ## 🎯 Problem
@@ -51,6 +53,8 @@ A simple system that digitizes:
 - Next.js (App Router)
 - TypeScript
 - TailwindCSS
+- shadcn/ui-style local UI components
+- dependency-cruiser for architecture checks
 - Prisma ORM
 - PostgreSQL (or SQLite for development)
 
@@ -73,6 +77,7 @@ This is an MVP version focused on validating real studio workflows before scalin
 All product and system design documents are available in the `/docs` folder:
 
 - PRD
+- ADRs
 - Database design
 - Business rules
 - Roadmap

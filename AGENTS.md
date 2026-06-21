@@ -9,3 +9,13 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 Before planning or implementing product behavior, read `docs/prd.md`. It is the source of truth for the Yoga Studio Management SaaS MVP, including users, class groups, courses, attendance statuses, saved/burned sessions, remaining-session calculations, renewal warnings, and future roadmap.
 <!-- END:product-context -->
+
+<!-- BEGIN:project-conventions -->
+# Project Conventions
+
+- Record meaningful project decisions as ADRs in `docs/adr/` using the next numeric prefix, for example `0003-some-decision.md`. Add or update an ADR when introducing architecture tools, core libraries, data-access patterns, deployment strategy, authentication, persistence, UI systems, or business-rule structure.
+- For product behavior, keep `docs/prd.md` aligned with the implementation plan.
+- For dependency boundaries, keep `.dependency-cruiser.cjs` aligned with the current folder structure and run `pnpm arch:check` after changing imports or architecture rules.
+- Useful checks before finishing code changes: `pnpm lint`, `pnpm arch:check`, and `pnpm build`. `pnpm build` may need network access because `next/font/google` fetches fonts during build.
+- The UI system is documented in `docs/adr/0001-ui-component-system.md`. Prefer local UI primitives under `src/components/ui` and shared non-UI utilities under `src/lib`.
+<!-- END:project-conventions -->
