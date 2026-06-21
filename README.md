@@ -53,6 +53,7 @@ A simple system that digitizes:
 - Next.js (App Router)
 - TypeScript
 - TailwindCSS
+- pnpm 10.28.2, pinned through `packageManager`
 - shadcn/ui-style local UI components
 - dependency-cruiser for architecture checks
 - Prisma ORM
@@ -70,6 +71,8 @@ Production deployment is handled by Vercel:
 - Build command: `pnpm build`
 
 GitHub Actions is used as the CI quality gate before merge/deploy. It runs linting, architecture checks, the Next.js build, and a Docker image build.
+
+The package manager version is pinned in `package.json`. Docker uses Corepack, so the `packageManager` field must stay aligned with CI when pnpm is upgraded.
 
 ---
 

@@ -32,6 +32,7 @@ Do not copy full PRD, README, or ADR content here. Link to canonical docs and ke
 - UI primitives live in `src/components/ui`; shared non-UI utilities and business logic live in `src/lib`.
 - `src/lib` must not import `src/app` or `src/components`; `src/components/ui` must not import `src/app`.
 - Keep deployment files aligned when deployment behavior changes: `vercel.json`, `Dockerfile`, `compose.yml`, `.github/workflows/ci.yml`, `next.config.ts`, README, and relevant ADRs.
+- `package.json` pins pnpm through `packageManager`; keep CI and Docker package-manager behavior aligned when changing it.
 - Generated artifacts such as `dependency-graph.dot` should stay out of git.
 - Use pull requests for project changes; `master` is the production branch; `CI / Verify` should pass before merge; Vercel previews PRs and deploys production from `master`.
 

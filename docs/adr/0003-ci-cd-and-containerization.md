@@ -22,6 +22,8 @@ Use GitHub Actions as the quality gate for pull requests and pushes to `master`.
 - `pnpm build`
 - Docker image build validation
 
+Pin the package manager in `package.json` with `packageManager`. Docker uses Corepack, so `pnpm install` inside the image must resolve the project-pinned pnpm version rather than the latest Corepack default.
+
 Use Docker for production-like local runs and future self-hosting. Enable Next.js `output: "standalone"` so the Docker runtime image contains only traced production files, static assets, and the minimal Next server.
 
 ## Rationale
@@ -36,6 +38,7 @@ Use Docker for production-like local runs and future self-hosting. Enable Next.j
 
 - `pnpm build` needs network access while the app uses `next/font/google`, because Google font files are fetched at build time and then self-hosted by Next.js.
 - Docker builds also need network access during dependency installation and font fetching.
+- When upgrading pnpm, update the `packageManager` field and GitHub Actions setup together.
 - Future database work should extend `compose.yml` with PostgreSQL and add migration checks to CI.
 - If the app later uses Server Actions across multiple container instances, deployment configuration must include consistent encryption and deployment identifiers.
 
