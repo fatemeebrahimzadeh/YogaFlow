@@ -1,0 +1,4 @@
+interface:
+  display_name: "YogaFlow Project"
+  short_description: "Workflow rules for YogaFlow changes"
+  default_prompt: "Use $yogaflow-project to plan and implement changes in the YogaFlow repository."
