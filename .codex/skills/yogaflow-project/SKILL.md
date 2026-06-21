@@ -30,6 +30,7 @@ Do not copy full PRD, README, or ADR content here. Link to canonical docs and ke
 ## Current Project Policies
 
 - UI primitives live in `src/components/ui`; shared non-UI utilities and business logic live in `src/lib`.
+- A future `packages/dls` package is planned only when multi-app, white-label branding, or sport-specific theme reuse justifies extraction.
 - `src/lib` must not import `src/app` or `src/components`; `src/components/ui` must not import `src/app`.
 - Keep deployment files aligned when deployment behavior changes: `vercel.json`, `Dockerfile`, `compose.yml`, `.github/workflows/ci.yml`, `next.config.ts`, README, and relevant ADRs.
 - `package.json` pins pnpm through `packageManager`; keep CI and Docker package-manager behavior aligned when changing it.
