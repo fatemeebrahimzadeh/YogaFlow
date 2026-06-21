@@ -4,8 +4,6 @@ A lightweight system for managing yoga studio operations including courses, stud
 
 This project is designed as a real-world SaaS-style MVP for a small yoga studio to replace manual tracking (Excel / paper / messaging apps).
 
-Live deployment: https://yoga-flow-m4rv.vercel.app/
-
 ---
 
 ## 🎯 Problem
