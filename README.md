@@ -175,5 +175,6 @@ All product and system design documents are available in the `/docs` folder:
 - Payment system
 - SMS / WhatsApp reminders
 - Multi-studio SaaS support
+- Sport-specific themes for yoga, pilates, fitness, and other class-based studios
 - Coach dashboard
 - Analytics
