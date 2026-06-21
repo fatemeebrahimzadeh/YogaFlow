@@ -60,6 +60,67 @@ A simple system that digitizes:
 
 ---
 
+## 🚢 Deployment
+
+Production deployment is handled by Vercel:
+
+- Live URL: https://yoga-flow-m4rv.vercel.app/
+- Vercel framework: Next.js
+- Install command: `pnpm install --frozen-lockfile`
+- Build command: `pnpm build`
+
+GitHub Actions is used as the CI quality gate before merge/deploy. It runs linting, architecture checks, the Next.js build, and a Docker image build.
+
+---
+
+## 🐳 Docker
+
+The project includes a production Docker image for local production-like runs and future self-hosting.
+
+Docker Desktop or another Docker engine is required to run these commands.
+
+Build the image:
+
+```bash
+pnpm docker:build
+```
+
+Run with Docker Compose:
+
+```bash
+pnpm docker:run
+```
+
+The app runs on:
+
+```bash
+http://localhost:3000
+```
+
+The Docker image uses Next.js standalone output. Vercel remains the primary deployment path.
+
+---
+
+## ✅ Quality Checks
+
+Run the same checks used in CI:
+
+```bash
+pnpm lint
+pnpm arch:check
+pnpm build
+```
+
+Generate a local dependency graph:
+
+```bash
+pnpm arch:graph
+```
+
+The generated `dependency-graph.dot` file is ignored by git.
+
+---
+
 ## 📁 Project Structure
 
 See `/docs` for full architecture and product documentation.

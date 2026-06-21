@@ -9,6 +9,8 @@
     "lint": "biome check",
     "arch:check": "depcruise src --config .dependency-cruiser.cjs",
     "arch:graph": "depcruise src --config .dependency-cruiser.cjs --output-type dot --output-to dependency-graph.dot",
+    "docker:build": "docker build --target runner -t yoga-flow:local .",
+    "docker:run": "docker compose up --build",
     "format": "biome format --write",
     "release": "standard-version",
     "push-release": "git push --follow-tags origin master",
