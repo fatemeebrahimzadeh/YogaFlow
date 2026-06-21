@@ -1,188 +1,186 @@
-# Product Requirements Document (PRD)
+# Yoga Studio Management SaaS
 
-## Project: Yoga Studio Management MVP
+## معرفی پروژه
 
----
+این پروژه یک سیستم مدیریت کلاس‌های یوگا است که برای کمک به مربیان در مدیریت شاگردان، جلسات و پرداخت‌ها طراحی می‌شود.
 
-## 🧭 Overview
+هدف اصلی پروژه کاهش کارهای دستی مربی و فراهم کردن شفافیت بیشتر برای شاگردان است. در حال حاضر بسیاری از مربیان اطلاعات حضور و غیاب، جلسات ذخیره‌شده و وضعیت پرداخت شاگردان را به‌صورت دستی یا در فایل‌های پراکنده نگهداری می‌کنند که باعث خطا و اتلاف زمان می‌شود.
 
-This project is a lightweight internal system designed for yoga studio owners to manage students, courses, attendance, and session tracking.
+این سیستم تلاش می‌کند تمام این فرایندها را در یک پنل متمرکز مدیریت کند.
 
-It replaces manual tools like Excel, paper logs, and messaging apps.
+## کاربران سیستم
 
----
+### مربی
 
-## 🎯 Goals
+مربی بتواند:
 
-- Digitize student management
-- Track course enrollment
-- Manage attendance efficiently
-- Automatically calculate remaining sessions
-- Reduce manual administrative work
+- شاگرد جدید ثبت کند.
+- سانس‌های مختلف کلاس را تعریف کند.
+- شاگردان را در سانس‌ها ثبت‌نام کند.
+- پرداخت‌های شاگردان را ثبت و پیگیری کند.
+- حضور و غیاب روزانه را ثبت کند.
+- غیبت شاگردان را همراه با دلیل ثبت کند.
+- مشخص کند آیا غیبت ذخیره می‌شود یا می‌سوزد.
+- جلسات جبرانی را ثبت کند.
+- شاگردانی که نیاز به تمدید دوره دارند را مشاهده کند.
 
----
+### شاگرد
 
-## 👥 Users
+شاگرد بتواند:
 
-### Admin (Primary User)
+- جلسات شرکت‌کرده خود را مشاهده کند.
+- جلسات ذخیره‌شده را مشاهده کند.
+- جلسات سوخته را مشاهده کند.
+- تعداد جلسات باقی‌مانده را ببیند.
+- تاریخچه کامل کلاس‌های خود را مشاهده کند.
 
-Studio owner or receptionist responsible for daily operations.
+## مسئله اصلی
 
----
+مربی باید در هر لحظه بداند:
 
-## 🚫 Out of Scope (MVP)
+- هر شاگرد چند جلسه باقی‌مانده دارد.
+- چه کسانی نیاز به تمدید دارند.
+- چه کسانی امروز باید در کلاس حضور داشته باشند.
+- چه جلساتی ذخیره شده‌اند.
+- چه جلساتی سوخته‌اند.
 
-- Online payments
-- Notifications (SMS / WhatsApp)
-- Multi-studio SaaS
-- Mobile application
-- Advanced subscription billing
-- Waitlist system
+همچنین شاگرد باید بتواند بدون نیاز به تماس با مربی، وضعیت جلسات خود را مشاهده کند.
 
----
+## مفاهیم اصلی سیستم
 
-## 🧱 Core Concept
+### سانس (Class Group)
 
-This system is based on an **Enrollment-based model**:
+هر سانس شامل:
 
-- A student enrolls in a course
-- Purchases a fixed number of sessions (e.g. 10)
-- Attends weekly sessions
-- System tracks attendance and remaining sessions automatically
+- روزهای مشخص هفته
+- ساعت شروع
+- ساعت پایان
 
----
+مثال:
 
-## 🧩 Features
+- شنبه، دوشنبه، چهارشنبه
+- ساعت 18:00 تا 19:00
 
----
+### دوره (Course)
 
-## 1. Course Management
+هر بار که شاگرد هزینه پرداخت می‌کند یک دوره جدید برای او ایجاد می‌شود.
 
-### Description
-Manage yoga courses (fixed weekly classes)
+هر دوره شامل:
 
-### Data
-- Title
-- Days of week
-- Time
+- تعداد جلسات
+- تاریخ شروع
+- مبلغ پرداختی
 
-### Actions
-- Create course
-- Edit course
-- View courses
+مثال:
 
----
+- 24 جلسه
+- شروع از 1405/04/01
 
-## 2. Student Management
+## حضور و غیاب
 
-### Description
-Manage students in the system
+برای هر جلسه وضعیت شاگرد ثبت می‌شود.
 
-### Data
-- Name
-- Phone
+### حاضر
 
-### Actions
-- Add student
-- Edit student
-- View students
+جلسه مصرف می‌شود.
 
----
+### غیبت سوخته
 
-## 3. Enrollment (Core Feature)
+جلسه مصرف می‌شود.
 
-### Description
-Assign students to courses with a fixed session package
+### غیبت ذخیره‌شده
 
-### Data
-- Student
-- Course
-- Total sessions (e.g. 10)
-- Remaining sessions
+جلسه مصرف نمی‌شود.
 
-### Rules
-- On creation: remainingSessions = totalSessions
-- Attendance affects remaining sessions
+### کنسلی مربی
 
----
+جلسه مصرف نمی‌شود.
 
-## 4. Attendance Tracking
+### تعطیل رسمی
 
-### Description
-Track student presence for each session
+جلسه مصرف نمی‌شود.
 
-### Data
-- Session
-- Student
-- Status (Present / Absent)
-- Reason (optional)
-- Session saved (boolean)
+### جلسه جبرانی
 
-### Rules
+جلسه خارج از زمان عادی کلاس ثبت می‌شود و مصرف می‌شود.
 
-If Present:
-- No session deduction
+## قوانین کسب‌وکار
 
-If Absent:
-- If sessionSaved = false → deduct 1 session
-- If sessionSaved = true → do not deduct
+### جلسات مصرف‌شده
 
----
+جلسه مصرف‌شده شامل موارد زیر است:
 
-## 5. Session Management
+- حاضر
+- غیبت سوخته
+- جلسه جبرانی
 
-### Description
-Each course session that happens on a specific date
+### جلسات غیرمصرف‌شده
 
-### Data
-- Course
-- Date
+جلسه مصرف نمی‌شود اگر:
 
----
+- غیبت ذخیره‌شده باشد.
+- کلاس توسط مربی لغو شده باشد.
+- تعطیل رسمی باشد.
 
-## 6. Student Progress
+### پایان دوره
 
-### Description
-View student status in a course
+یک دوره زمانی به پایان می‌رسد که:
 
-### Metrics
-- Total sessions
-- Used sessions
-- Remaining sessions
-- Attendance history
+تعداد جلسات مصرف‌شده برابر با تعداد جلسات دوره شود.
 
----
+### جلسات ذخیره‌شده
 
-## 🔄 System Flow
+اگر شاگرد غایب باشد و مربی جلسه را ذخیره کند:
 
-Student → Enrollment → Sessions → Attendance → Remaining Sessions Update
+- از سهم جلسات شاگرد کم نمی‌شود.
+- در آینده قابل جبران است.
 
----
+### جلسات سوخته
 
-## 🧠 Key Business Rules
+اگر شاگرد غایب باشد و جلسه ذخیره نشود:
 
-- Students must be enrolled before attending sessions
-- Attendance drives session deduction logic
-- System does not support free booking (MVP scope)
-- Session saving depends on admin decision
+- از تعداد جلسات شاگرد کم می‌شود.
+- قابل جبران نیست.
 
----
+## داشبورد مربی
 
-## 📌 Success Criteria
+در داشبورد مربی باید اطلاعات زیر نمایش داده شود:
 
-MVP is successful if:
+- کلاس‌های امروز
+- شاگردان نیازمند حضور و غیاب
+- شاگردان نزدیک به اتمام دوره
+- تعداد جلسات باقی‌مانده هر شاگرد
 
-- Admin can manage classes without Excel
-- Attendance can be recorded in under 1 minute per session
-- Remaining sessions are always accurate
-- System is usable in a real studio workflow
+## نسخه اولیه (MVP)
 
----
+نسخه اول پروژه شامل:
 
-## 🔮 Future Enhancements
+- احراز هویت مربی
+- مدیریت شاگردان
+- مدیریت سانس‌ها
+- ثبت دوره
+- ثبت پرداخت
+- حضور و غیاب
+- جلسات ذخیره‌شده و سوخته
+- محاسبه جلسات باقی‌مانده
+- هشدار تمدید دوره
+- پنل مشاهده وضعیت جلسات برای شاگرد
+- داکرایز کردن پروژه برای اجرای یکسان در محیط توسعه و استقرار
+- راه‌اندازی CI/CD برای اجرای خودکار بررسی‌ها و آماده‌سازی فرایند استقرار
 
-- Payment integration
-- Notifications (WhatsApp/SMS)
-- Multi-studio SaaS support
-- Coach dashboard
-- Analytics and reporting
+## چشم‌انداز آینده
+
+در نسخه‌های بعدی امکان افزودن قابلیت‌های زیر وجود دارد:
+
+- پیامک یادآوری
+- واتساپ
+- اعلان‌ها
+- تقویم هوشمند
+- چند مربی
+- چند شعبه
+- مدل اشتراکی SaaS برای چندین مجموعه ورزشی
+- بازطراحی و بهبود رابط کاربری پس از اعتبارسنجی نسخه اولیه
+- تدوین هویت برند، نام‌گذاری، پیام اصلی محصول و راهنمای بصری
+- تدوین مدل درآمدی و پلن‌های تجاری برای کسب درآمد از محصول
+- بررسی انتشار پروژه به‌صورت متن‌باز در صورت موفق نبودن مدل تجاری
+- برنامه‌ریزی برای عرضه و توزیع سیستم در استودیوهای یوگای دیگر
