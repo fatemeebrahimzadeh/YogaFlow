@@ -29,7 +29,9 @@ Run `pnpm test` in CI after lint and architecture checks and before the producti
 
 - Tests should avoid coupling to implementation details such as private component state or exact DOM structure.
 - Feature business rules should get focused unit tests as they are introduced.
-- End-to-end tests are not part of this decision yet; add a separate ADR when browser workflows need coverage.
+- End-to-end tests are not part of the current setup. Add Playwright when core user flows exist, such as login, student creation, attendance registration, renewals, and student status viewing.
+- Add MSW when frontend features depend on API responses that should be tested without a real backend.
+- Add backend/database integration test tooling when persistence, Prisma models, and migrations are implemented.
 
 ## Implementation Notes
 
@@ -37,3 +39,4 @@ Run `pnpm test` in CI after lint and architecture checks and before the producti
 - `vitest.setup.ts` installs jest-dom matchers.
 - `src/features/dashboard/ui/dashboard-home.test.tsx` is the first component test.
 - `pnpm test` runs the suite once; `pnpm test:watch` runs Vitest in watch mode.
+- Future E2E and backend integration test tooling should be added with its own ADR update and CI step.
