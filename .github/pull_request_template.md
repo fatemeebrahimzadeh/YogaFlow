@@ -14,6 +14,7 @@
 
 - [ ] `pnpm lint`
 - [ ] `pnpm arch:check`
+- [ ] `pnpm test`
 - [ ] `pnpm build`
 - [ ] Docker changes validated, or Docker was not available locally
 

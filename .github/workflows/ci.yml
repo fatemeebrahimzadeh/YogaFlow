@@ -39,6 +39,9 @@ jobs:
       - name: Architecture check
         run: pnpm arch:check
 
+      - name: Test
+        run: pnpm test
+
       - name: Build
         run: pnpm build
 

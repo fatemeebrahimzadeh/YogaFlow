@@ -38,6 +38,7 @@ Do not copy full PRD, README, or ADR content here. Link to canonical docs and ke
 - `package.json` pins pnpm through `packageManager`; keep CI and Docker package-manager behavior aligned when changing it.
 - Generated artifacts such as `dependency-graph.dot` should stay out of git.
 - Use pull requests for project changes; `master` is the production branch; `CI / Verify` should pass before merge; Vercel previews PRs and deploys production from `master`.
+- Use Vitest for unit/component tests. Co-locate `*.test.ts` and `*.test.tsx` near the code they validate.
 
 ## Validation
 
@@ -46,6 +47,7 @@ Run checks that match the change. Defaults:
 ```bash
 pnpm lint
 pnpm arch:check
+pnpm test
 pnpm build
 ```
 

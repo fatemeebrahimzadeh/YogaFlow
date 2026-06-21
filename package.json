@@ -8,6 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome check",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "arch:check": "depcruise src --config .dependency-cruiser.cjs",
     "arch:graph": "depcruise src --config .dependency-cruiser.cjs --output-type dot --output-to dependency-graph.dot",
     "docker:build": "docker build --target runner -t yoga-flow:local .",
@@ -32,16 +34,20 @@
     "@biomejs/biome": "2.2.0",
     "@commitlint/config-conventional": "^21.0.2",
     "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "commitlint": "^21.0.2",
     "dependency-cruiser": "^17.4.3",
     "husky": "^9.1.7",
+    "jsdom": "^29.1.1",
     "lint-staged": "^17.0.7",
     "standard-version": "^9.5.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.9"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [

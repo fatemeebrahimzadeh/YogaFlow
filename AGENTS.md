@@ -16,8 +16,9 @@ Before planning or implementing product behavior, read `docs/prd.md`. It is the 
 - Record meaningful project decisions as ADRs in `docs/adr/` using the next numeric prefix, for example `0003-some-decision.md`. Add or update an ADR when introducing architecture tools, core libraries, data-access patterns, deployment strategy, authentication, persistence, UI systems, or business-rule structure.
 - For product behavior, keep `docs/prd.md` aligned with the implementation plan.
 - For dependency boundaries, keep `.dependency-cruiser.cjs` aligned with the current folder structure and run `pnpm arch:check` after changing imports or architecture rules.
-- Useful checks before finishing code changes: `pnpm lint`, `pnpm arch:check`, and `pnpm build`. `pnpm build` may need network access because `next/font/google` fetches fonts during build.
+- Useful checks before finishing code changes: `pnpm lint`, `pnpm arch:check`, `pnpm test`, and `pnpm build`. `pnpm build` may need network access because `next/font/google` fetches fonts during build.
 - The UI system is documented in `docs/adr/0001-ui-component-system.md`. Prefer local UI primitives under `src/components/ui` and shared non-UI utilities under `src/lib`.
 - Product modules use feature-based architecture under `src/features/<feature-name>` with public exports from each feature `index.ts`. Keep `src/app` route files thin and use them to compose feature entry points.
+- Use Vitest for unit/component tests. Co-locate tests next to the code they validate with `*.test.ts` or `*.test.tsx`.
 - When asked to commit, inspect staged and unstaged changes first. Split commits by logical change group, stage only the files for each group explicitly, and leave unrelated changes uncommitted.
 <!-- END:project-conventions -->
