@@ -1,45 +1,43 @@
 ---
 name: yogaflow-project
-description: Project-specific workflow for the YogaFlow repository. Use when working in /Users/fatemeebrahimzadeh/Documents/YogaFlow or when the user asks to plan, implement, document, validate, commit, deploy, Dockerize, configure CI/CD, update ADRs/PRD/README/AGENTS.md, or make architecture/UI/business-rule changes for YogaFlow.
+description: Project-specific workflow for the YogaFlow repository. Use when working in /Users/fatemeebrahimzadeh/Documents/YogaFlow or when planning, implementing, validating, documenting, committing, deploying, or changing architecture, UI, product behavior, CI/CD, Docker, ADRs, PRD, README, AGENTS.md, or repo-local skills for YogaFlow.
 ---
 
 # YogaFlow Project
 
-## Core Workflow
+## Start Here
 
-1. Start from the repo root: `/Users/fatemeebrahimzadeh/Documents/YogaFlow`.
-2. Read `AGENTS.md` before changing code. It contains required Next.js and project conventions.
-3. For product behavior, read `docs/prd.md` and keep it aligned with the implementation plan.
-4. For meaningful project decisions, add or update an ADR in `docs/adr/` with the next numeric prefix. Use ADRs for architecture tools, core libraries, UI system decisions, auth, persistence, deployment, observability, domain/CDN strategy, business-rule structure, and other durable choices.
-5. Read existing ADRs before changing an area they cover:
-   - `0001-ui-component-system.md` for shadcn/ui-style local components.
-   - `0002-dependency-cruiser.md` for dependency boundaries.
-   - `0003-ci-cd-and-containerization.md` for CI/CD, Vercel, Docker, and standalone output.
+1. Work from `/Users/fatemeebrahimzadeh/Documents/YogaFlow`.
+2. Read `AGENTS.md` first; it contains always-on repo rules.
+3. For product behavior, read and maintain `docs/prd.md`.
+4. For durable decisions, read existing ADRs in `docs/adr/` and add the next numbered ADR when needed.
+5. For Next.js behavior, read the relevant local docs under `node_modules/next/dist/docs/` before coding.
 
-## Policy Sync Rule
+## Skill Sync Rule
 
-When a commit introduces a policy, convention, durable architecture decision, workflow expectation, or future implementation rule that later agents must respect, update this skill in the same logical change group. Keep this skill aligned with `AGENTS.md`, `docs/prd.md`, ADRs, README deployment instructions, and project tooling.
+Update this skill only when a change creates guidance future implementations must remember.
 
-Examples that should update this skill:
+Good reasons to update it:
 
-- New commit or branching conventions.
-- New required validation checks.
+- New commit, PR, branching, validation, or release policy.
 - New architecture boundaries or dependency-cruiser rules.
-- New UI, data, auth, deployment, observability, CDN, domain, or database policies.
-- New source directories that change where app, UI, feature, or shared logic belongs.
+- New required project checks.
+- New durable UI, data, auth, deployment, observability, CDN, domain, database, or feature-structure policy.
+- New source layout that changes where app, UI, feature, or shared code belongs.
 
-## Implementation Guardrails
+Do not copy full PRD, README, or ADR content here. Link to canonical docs and keep this file a concise workflow guide.
 
-- Next.js version in this repo may differ from model assumptions. Before changing Next.js APIs, routing, deployment config, fonts, caching, or build behavior, read the relevant local docs in `node_modules/next/dist/docs/`.
-- Prefer existing stack choices: Next.js App Router, TypeScript, Tailwind CSS, local shadcn/ui-style components, dependency-cruiser, pnpm, Vercel, and Docker standalone output.
-- Keep reusable UI primitives in `src/components/ui`. Keep shared non-UI utilities and business logic in `src/lib`.
-- Do not let `src/lib` import `src/app` or `src/components`. Do not let `src/components/ui` import `src/app`. Update `.dependency-cruiser.cjs` only when the architecture intentionally changes.
-- Keep `vercel.json`, `Dockerfile`, `compose.yml`, `.github/workflows/ci.yml`, `next.config.ts`, and README deployment docs aligned when changing deployment or CI/CD behavior.
-- Keep generated files out of git when they can be recreated, such as `dependency-graph.dot`.
+## Current Project Policies
+
+- UI primitives live in `src/components/ui`; shared non-UI utilities and business logic live in `src/lib`.
+- `src/lib` must not import `src/app` or `src/components`; `src/components/ui` must not import `src/app`.
+- Keep deployment files aligned when deployment behavior changes: `vercel.json`, `Dockerfile`, `compose.yml`, `.github/workflows/ci.yml`, `next.config.ts`, README, and relevant ADRs.
+- Generated artifacts such as `dependency-graph.dot` should stay out of git.
+- Use pull requests for project changes; `master` is the production branch; `CI / Verify` should pass before merge; Vercel previews PRs and deploys production from `master`.
 
 ## Validation
 
-Run focused checks for the change. Useful defaults:
+Run checks that match the change. Defaults:
 
 ```bash
 pnpm lint
@@ -50,20 +48,16 @@ pnpm build
 Notes:
 
 - `pnpm build` may need network access because `next/font/google` fetches font files at build time.
-- Docker commands require Docker to be installed and running. Use `pnpm docker:build` and `pnpm docker:run` when Docker-related work changes and the environment supports it.
-- For UI changes, run the dev server when useful. If port 3000 is occupied, use the port Next selects.
+- For Docker changes, run `pnpm docker:build` when Docker is available.
+- For UI changes, run the dev server when useful.
 
-## Commit Rules
+## Commit Workflow
 
-When the user asks to commit:
+When asked to commit:
 
-1. Inspect staged and unstaged changes first with `git status --short` and relevant diffs.
-2. Split commits by logical change group. Do not combine unrelated edits.
-3. Stage files explicitly for each commit. Do not rely on `git add .` unless every changed file belongs to that single group.
+1. Inspect staged and unstaged changes first.
+2. Split commits by logical change group.
+3. Stage files explicitly for each group.
 4. Leave unrelated changes uncommitted.
-5. Use conventional commit messages where practical, e.g. `docs: ...`, `feat: ...`, `chore: ...`, `fix: ...`.
-6. If hooks fail because of a known tooling limitation, explain the reason before using `--no-verify`.
-
-## Roadmap Awareness
-
-Future plans already recorded in `docs/prd.md` include UI redesign, branding, monetization, open-source fallback, distribution to other yoga studios, observability, CDN, custom domain/DNS, production/preview environments, CI/CD, and Docker. Keep new work consistent with those roadmap items, and update the PRD when the plan changes.
+5. Use conventional commit messages where practical.
+6. Explain hook failures before using `--no-verify`.

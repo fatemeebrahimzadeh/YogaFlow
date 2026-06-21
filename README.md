@@ -121,6 +121,28 @@ The generated `dependency-graph.dot` file is ignored by git.
 
 ---
 
+## 🔁 Contribution Workflow
+
+Use pull requests for project changes:
+
+1. Create a branch from `master`.
+2. Commit related changes in separate logical commits.
+3. Open a pull request.
+4. Wait for the GitHub Actions `CI / Verify` job to pass.
+5. Review the Vercel Preview Deployment for the pull request.
+6. Merge only after CI passes and the preview looks correct.
+
+`master` is the production branch. Vercel should deploy pull requests as Preview Deployments and deploy `master` as Production.
+
+Recommended GitHub branch protection for `master`:
+
+- Require a pull request before merging.
+- Require status checks to pass before merging.
+- Select the `CI / Verify` status check.
+- Require branches to be up to date before merging.
+
+---
+
 ## 📁 Project Structure
 
 See `/docs` for full architecture and product documentation.
