@@ -11,7 +11,8 @@ describe("DashboardHome", () => {
       screen.getByRole("heading", { name: "پنل روزانه مربی" }),
     ).toBeInTheDocument();
     expect(screen.getByText("دوشنبه")).toBeInTheDocument();
-    expect(screen.getByText("2026-06-22")).toBeInTheDocument();
+    expect(screen.getByText("۱ تیر ۱۴۰۵")).toBeInTheDocument();
+    expect(screen.queryByText("2026-06-22")).not.toBeInTheDocument();
 
     expect(
       screen.getByRole("heading", { name: "کارهای امروز مربی" }),

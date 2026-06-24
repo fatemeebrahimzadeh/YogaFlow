@@ -98,11 +98,8 @@ export function DashboardHome({
               <CalendarDays className="size-4 text-primary" />
               {weekdayLabels[snapshot.currentWeekday]}
             </span>
-            <span
-              className="inline-flex items-center rounded-md border border-border bg-card px-3 py-2 text-card-foreground"
-              dir="ltr"
-            >
-              {snapshot.currentDateKey}
+            <span className="inline-flex items-center rounded-md border border-border bg-card px-3 py-2 text-card-foreground">
+              {shortDateFormatter.format(currentDate)}
             </span>
           </div>
         </header>
