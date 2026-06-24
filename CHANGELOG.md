@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/fatemeebrahimzadeh/YogaFlow/compare/v0.1.3...v0.1.4) (2026-06-24)
+
+
+### Features
+
+* add Persian coach dashboard ([732ce49](https://github.com/fatemeebrahimzadeh/YogaFlow/commit/732ce490d6503cc05d2582517bae23ba788d6541))
+
 ### [0.1.3](https://github.com/fatemeebrahimzadeh/YogaFlow/compare/v0.1.2...v0.1.3) (2026-06-21)
 
 
