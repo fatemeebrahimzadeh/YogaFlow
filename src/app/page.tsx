@@ -1,5 +1,9 @@
+import { connection } from "next/server";
+
 import { DashboardHome } from "@/features/dashboard";
 
-export default function Page() {
-  return <DashboardHome />;
+export default async function Page() {
+  await connection();
+
+  return <DashboardHome currentDate={new Date()} />;
 }
