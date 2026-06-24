@@ -1,0 +1,4 @@
+interface:
+  display_name: "Branch & Commit Convention"
+  short_description: "Apply YogaFlow branch and commit rules"
+  default_prompt: "Use $branch-commit-convention to create a branch name and commit message for my YogaFlow change."

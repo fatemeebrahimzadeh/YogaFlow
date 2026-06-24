@@ -29,6 +29,7 @@ Do not copy full PRD, README, or ADR content here. Link to canonical docs and ke
 
 ## Current Project Policies
 
+- Use `$branch-commit-convention` for branch naming, commit splitting, staging, and commit message decisions.
 - UI primitives live in `src/components/ui`; shared non-UI utilities and business logic live in `src/lib`.
 - Product modules use feature-based architecture under `src/features/<feature-name>` with public exports from each feature `index.ts`.
 - A future `packages/dls` package is planned only when multi-app, white-label branding, or sport-specific theme reuse justifies extraction.
@@ -60,7 +61,7 @@ Notes:
 
 ## Commit Workflow
 
-When asked to commit:
+When asked to commit, use `$branch-commit-convention` and:
 
 1. Inspect staged and unstaged changes first.
 2. Split commits by logical change group.
