@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const vazirmatn = localFont({
+  src: "./fonts/vazirmatn-arabic.woff2",
+  variable: "--font-vazirmatn",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "YogaFlow",
-  description: "Yoga studio management SaaS",
+  description: "پنل مدیریت کلاس‌های یوگا",
 };
 
 export default function RootLayout({
@@ -24,8 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      lang="fa"
+      dir="rtl"
+      className={`${vazirmatn.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
