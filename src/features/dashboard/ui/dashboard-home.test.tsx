@@ -13,8 +13,10 @@ describe("DashboardHome", () => {
     expect(screen.getByText("دوشنبه")).toBeInTheDocument();
     expect(screen.getByText("۱ تیر ۱۴۰۵")).toBeInTheDocument();
     expect(screen.queryByText("2026-06-22")).not.toBeInTheDocument();
-    expect(screen.getByText("نسخه پایلوت مربی")).toBeInTheDocument();
-    expect(screen.getByText("داده دستی")).toBeInTheDocument();
+    expect(screen.getAllByText("دموی عمومی")).not.toHaveLength(0);
+    expect(
+      screen.getByText(/داده‌های ساختگی نمایش داده می‌شود/),
+    ).toBeInTheDocument();
 
     expect(
       screen.getByRole("heading", { name: "کارهای امروز مربی" }),
@@ -29,17 +31,19 @@ describe("DashboardHome", () => {
     expect(
       screen.getByRole("heading", { level: 2, name: "کلاس‌های امروز" }),
     ).toBeInTheDocument();
-    expect(screen.getByText("فلو عصر")).toBeInTheDocument();
+    expect(screen.getByText("مبانی عصر")).toBeInTheDocument();
     expect(
-      screen.getByText("جلسه پرظرفیت عصر با تمرکز روی فلو و پیگیری تمدیدها."),
+      screen.getByText(
+        "نمونه سانس عصر برای نمایش تمدید، پرداخت و جلسات باقی‌مانده.",
+      ),
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        "سارا و ندا نزدیک تمدید هستند؛ لیلا قبل از ادامه کلاس باید تمدید شود.",
+        "یک شاگرد نزدیک تمدید است و یک جلسه ذخیره‌شده باید برای جبرانی پیگیری شود.",
       ),
     ).toBeInTheDocument();
-    expect(screen.getByText("یوگای صبحگاهی")).toBeInTheDocument();
-    expect(screen.getAllByText("سارا احمدی")).not.toHaveLength(0);
+    expect(screen.getByText("فلو صبحگاهی")).toBeInTheDocument();
+    expect(screen.getAllByText("کیانا نمونه")).not.toHaveLength(0);
 
     expect(
       screen.getByRole("heading", { name: "پیگیری تمدید و پرداخت" }),

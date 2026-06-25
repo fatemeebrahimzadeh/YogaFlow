@@ -34,7 +34,7 @@ export async function grantPilotAccess() {
   cookieStore.set(PILOT_ACCESS_COOKIE_NAME, token, {
     httpOnly: true,
     maxAge: oneWeekInSeconds,
-    path: "/",
+    path: "/coach",
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
   });
@@ -46,7 +46,7 @@ export async function revokePilotAccess() {
   cookieStore.set(PILOT_ACCESS_COOKIE_NAME, "", {
     httpOnly: true,
     maxAge: 0,
-    path: "/",
+    path: "/coach",
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
   });

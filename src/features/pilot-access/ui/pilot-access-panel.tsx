@@ -28,11 +28,11 @@ export function PilotAccessPanel({
               YogaFlow
             </p>
             <h1 className="mt-1 font-semibold text-2xl tracking-normal">
-              ورود به نسخه پایلوت
+              ورود به داشبورد مربی
             </h1>
             <p className="mt-2 text-muted-foreground text-sm leading-6">
-              این پنل شامل اطلاعات شاگردها، پرداخت‌ها و وضعیت جلسات است و فقط
-              برای مربی قابل مشاهده است.
+              صفحه عمومی پروژه فقط داده ساختگی نشان می‌دهد. این آدرس برای مشاهده
+              داده عملیاتی مربی محافظت شده است.
             </p>
           </div>
         </div>
@@ -61,8 +61,8 @@ export function PilotAccessPanel({
           </form>
         ) : (
           <div className="mt-6 rounded-md border border-destructive/25 bg-destructive/10 px-3 py-3 text-destructive text-sm leading-6">
-            متغیر محیطی YOGAFLOW_PILOT_PASSWORD تنظیم نشده است. قبل از انتشار یا
-            اشتراک‌گذاری پنل، برای آن یک رمز قوی تنظیم کنید.
+            متغیر محیطی YOGAFLOW_PILOT_PASSWORD تنظیم نشده است. قبل از
+            اشتراک‌گذاری آدرس خصوصی مربی، برای آن یک رمز قوی تنظیم کنید.
           </div>
         )}
       </section>

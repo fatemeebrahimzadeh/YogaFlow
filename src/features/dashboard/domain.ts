@@ -54,11 +54,12 @@ export type ClassGroup = {
   studentIds: string[];
 };
 
-export type DashboardPilotData = {
+export type DashboardData = {
   classGroups: ClassGroup[];
   students: Student[];
-  updatedAt: string;
+  badgeLabel: string;
   sourceNote: string;
+  updatedAt: string;
 };
 
 export type CourseProgress = {

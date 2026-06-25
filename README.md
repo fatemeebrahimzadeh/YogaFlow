@@ -34,17 +34,23 @@ A simple system that digitizes:
 
 ---
 
-## 🧪 First Pilot Version
+## 🧪 Public Demo and Coach Pilot
 
-The current first-version path is a protected, read-only coach dashboard backed by one manually editable data file.
+The root URL shows a public dashboard with fake sample data so visitors can understand the product without seeing private studio information.
 
-Before sharing or deploying the pilot dashboard, set a strong password:
+The pilot coach dashboard lives at:
+
+```bash
+/coach
+```
+
+Before sharing the coach URL, set a strong password:
 
 ```bash
 YOGAFLOW_PILOT_PASSWORD="replace-with-a-strong-password" pnpm dev
 ```
 
-On Vercel, add `YOGAFLOW_PILOT_PASSWORD` as an environment variable for Preview and Production deployments. Without this variable, the app shows a setup warning instead of the dashboard.
+On Vercel, add `YOGAFLOW_PILOT_PASSWORD` as an environment variable for Preview and Production deployments. Without this variable, `/coach` shows a setup warning instead of the private dashboard.
 
 Until CRUD and database persistence are implemented, update the coach's operational data here:
 
@@ -52,7 +58,11 @@ Until CRUD and database persistence are implemented, update the coach's operatio
 src/features/dashboard/data.ts
 ```
 
-That file contains students, class groups, courses, payments, attendance records, the manual data source note, and the displayed data update date.
+Keep public fake data separate from coach data:
+
+```bash
+src/features/dashboard/demo-data.ts
+```
 
 ---
 

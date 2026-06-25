@@ -12,14 +12,14 @@ export async function signInToPilot(formData: FormData) {
   const password = formData.get("password");
 
   if (typeof password !== "string" || !verifyPilotPassword(password)) {
-    redirect("/?access=denied");
+    redirect("/coach?access=denied");
   }
 
   await grantPilotAccess();
-  redirect("/");
+  redirect("/coach");
 }
 
 export async function signOutOfPilot() {
   await revokePilotAccess();
-  redirect("/");
+  redirect("/coach");
 }

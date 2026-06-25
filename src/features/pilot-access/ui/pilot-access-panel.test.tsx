@@ -4,11 +4,11 @@ import { describe, expect, it } from "vitest";
 import { PilotAccessPanel } from "./pilot-access-panel";
 
 describe("PilotAccessPanel", () => {
-  it("renders the protected pilot sign-in form", () => {
+  it("renders the protected coach sign-in form", () => {
     render(<PilotAccessPanel isConfigured />);
 
     expect(
-      screen.getByRole("heading", { name: "ورود به نسخه پایلوت" }),
+      screen.getByRole("heading", { name: "ورود به داشبورد مربی" }),
     ).toBeInTheDocument();
     expect(screen.getByLabelText("رمز عبور")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "ورود" })).toBeInTheDocument();

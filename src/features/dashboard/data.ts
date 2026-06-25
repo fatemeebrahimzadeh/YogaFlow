@@ -1,32 +1,10 @@
-import type {
-  AttendanceRecord,
-  AttendanceStatus,
-  ClassGroup,
-  DashboardPilotData,
-  Student,
-} from "./domain";
+import type { ClassGroup, DashboardData, Student } from "./domain";
 
-// Pilot source of truth until CRUD and database persistence exist.
-// Replace these records with the coach's current students, classes, payments,
-// and attendance history before sharing the protected pilot dashboard.
+import { createAttendanceRecords, repeatStatus } from "./sample-data-helpers";
 
-function repeatStatus(status: AttendanceStatus, count: number) {
-  return Array.from({ length: count }, () => status);
-}
-
-function createAttendanceRecords(
-  prefix: string,
-  statuses: AttendanceStatus[],
-  overrides: Partial<AttendanceRecord>[] = [],
-): AttendanceRecord[] {
-  return statuses.map((status, index) => ({
-    id: `${prefix}-${index + 1}`,
-    date: `2026-05-${String(index + 1).padStart(2, "0")}`,
-    status,
-    ...overrides[index],
-  }));
-}
-
+// Private pilot source of truth until CRUD and database persistence exist.
+// Replace these records with the coach's real students, classes, payments,
+// and attendance history before sharing the protected coach URL.
 const dashboardClassGroups: ClassGroup[] = [
   {
     id: "morning-foundations",
@@ -207,12 +185,13 @@ const dashboardStudents: Student[] = [
   },
 ];
 
-export const dashboardPilotData = {
+export const coachDashboardData = {
+  badgeLabel: "داشبورد خصوصی مربی",
   classGroups: dashboardClassGroups,
   students: dashboardStudents,
   updatedAt: "2026-06-24",
   sourceNote:
-    "داده‌ها فعلا از فایل src/features/dashboard/data.ts خوانده می‌شوند و تا زمان ساخت فرم‌ها و دیتابیس باید دستی به‌روزرسانی شوند.",
-} satisfies DashboardPilotData;
+    "این نمای خصوصی از فایل src/features/dashboard/data.ts خوانده می‌شود و تا زمان ساخت فرم‌ها و دیتابیس باید دستی به‌روزرسانی شود.",
+} satisfies DashboardData;
 
 export { dashboardClassGroups, dashboardStudents };

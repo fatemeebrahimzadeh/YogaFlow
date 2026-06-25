@@ -8,11 +8,11 @@ import {
   WalletCards,
 } from "lucide-react";
 
-import { dashboardPilotData } from "../data";
+import { demoDashboardData } from "../demo-data";
 import {
   buildDashboardSnapshot,
   type CourseProgress,
-  type DashboardPilotData,
+  type DashboardData,
   type DashboardSnapshot,
   type Student,
   type StudentCourseSummary,
@@ -50,19 +50,19 @@ const currencyFormatter = new Intl.NumberFormat("fa-IR", {
 
 type DashboardHomeProps = {
   currentDate?: Date;
-  pilotData?: DashboardPilotData;
+  dashboardData?: DashboardData;
   signOut?: React.ReactNode;
 };
 
 export function DashboardHome({
   currentDate = new Date(),
-  pilotData = dashboardPilotData,
+  dashboardData = demoDashboardData,
   signOut,
 }: DashboardHomeProps) {
   const snapshot = buildDashboardSnapshot({
-    classGroups: pilotData.classGroups,
+    classGroups: dashboardData.classGroups,
     currentDate,
-    students: pilotData.students,
+    students: dashboardData.students,
   });
   const summariesByStudentId = new Map(
     snapshot.studentSummaries.map((summary) => [summary.student.id, summary]),
@@ -98,7 +98,7 @@ export function DashboardHome({
               {dateFormatter.format(currentDate)}
             </p>
             <p className="mt-1 text-muted-foreground text-xs leading-6">
-              آخرین به‌روزرسانی داده‌ها: {formatDateKey(pilotData.updatedAt)}
+              آخرین به‌روزرسانی داده‌ها: {formatDateKey(dashboardData.updatedAt)}
             </p>
           </div>
 
@@ -121,14 +121,16 @@ export function DashboardHome({
             <div className="flex gap-3">
               <FilePenLine className="mt-1 size-5 shrink-0 text-primary" />
               <div>
-                <h2 className="font-semibold text-base">نسخه پایلوت مربی</h2>
+                <h2 className="font-semibold text-base">
+                  {dashboardData.badgeLabel}
+                </h2>
                 <p className="mt-1 text-muted-foreground text-sm leading-6">
-                  {pilotData.sourceNote}
+                  {dashboardData.sourceNote}
                 </p>
               </div>
             </div>
             <span className="rounded-md bg-secondary px-2.5 py-1 text-secondary-foreground text-xs">
-              داده دستی
+              {dashboardData.badgeLabel}
             </span>
           </div>
         </section>

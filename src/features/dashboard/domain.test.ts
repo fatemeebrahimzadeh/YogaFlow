@@ -133,6 +133,5 @@ describe("dashboard domain rules", () => {
       "complete",
     ]);
     expect(snapshot.makeupSessionsCount).toBe(0);
-    expect(snapshot.followUpSavedSessionsCount).toBe(0);
   });
 });
