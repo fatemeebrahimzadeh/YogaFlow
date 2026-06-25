@@ -3,14 +3,16 @@ import {
   CalendarDays,
   CheckCircle2,
   Clock,
+  FilePenLine,
   Users,
   WalletCards,
 } from "lucide-react";
 
-import { dashboardClassGroups, dashboardStudents } from "../data";
+import { demoDashboardData } from "../demo-data";
 import {
   buildDashboardSnapshot,
   type CourseProgress,
+  type DashboardData,
   type DashboardSnapshot,
   type Student,
   type StudentCourseSummary,
@@ -48,15 +50,19 @@ const currencyFormatter = new Intl.NumberFormat("fa-IR", {
 
 type DashboardHomeProps = {
   currentDate?: Date;
+  dashboardData?: DashboardData;
+  signOut?: React.ReactNode;
 };
 
 export function DashboardHome({
   currentDate = new Date(),
+  dashboardData = demoDashboardData,
+  signOut,
 }: DashboardHomeProps) {
   const snapshot = buildDashboardSnapshot({
-    classGroups: dashboardClassGroups,
+    classGroups: dashboardData.classGroups,
     currentDate,
-    students: dashboardStudents,
+    students: dashboardData.students,
   });
   const summariesByStudentId = new Map(
     snapshot.studentSummaries.map((summary) => [summary.student.id, summary]),
@@ -91,18 +97,43 @@ export function DashboardHome({
             <p className="mt-2 text-muted-foreground text-sm">
               {dateFormatter.format(currentDate)}
             </p>
+            <p className="mt-1 text-muted-foreground text-xs leading-6">
+              آخرین به‌روزرسانی داده‌ها: {formatDateKey(dashboardData.updatedAt)}
+            </p>
           </div>
 
-          <div className="flex flex-wrap gap-2 text-sm">
-            <span className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-3 py-2 text-card-foreground">
-              <CalendarDays className="size-4 text-primary" />
-              {weekdayLabels[snapshot.currentWeekday]}
-            </span>
-            <span className="inline-flex items-center rounded-md border border-border bg-card px-3 py-2 text-card-foreground">
-              {shortDateFormatter.format(currentDate)}
-            </span>
+          <div className="flex flex-wrap items-center gap-2 text-sm">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-3 py-2 text-card-foreground">
+                <CalendarDays className="size-4 text-primary" />
+                {weekdayLabels[snapshot.currentWeekday]}
+              </span>
+              <span className="inline-flex items-center rounded-md border border-border bg-card px-3 py-2 text-card-foreground">
+                {shortDateFormatter.format(currentDate)}
+              </span>
+            </div>
+            {signOut}
           </div>
         </header>
+
+        <section className="rounded-lg border border-border bg-card px-4 py-3 text-card-foreground shadow-xs">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+            <div className="flex gap-3">
+              <FilePenLine className="mt-1 size-5 shrink-0 text-primary" />
+              <div>
+                <h2 className="font-semibold text-base">
+                  {dashboardData.badgeLabel}
+                </h2>
+                <p className="mt-1 text-muted-foreground text-sm leading-6">
+                  {dashboardData.sourceNote}
+                </p>
+              </div>
+            </div>
+            <span className="rounded-md bg-secondary px-2.5 py-1 text-secondary-foreground text-xs">
+              {dashboardData.badgeLabel}
+            </span>
+          </div>
+        </section>
 
         <section className="flex flex-col gap-4">
           <SectionHeader
@@ -251,10 +282,20 @@ function DailyActionGrid({
       icon: CalendarDays,
       tone: "ok",
     },
+    {
+      label: "جلسات ذخیره‌شده",
+      value: formatCount(snapshot.followUpSavedSessionsCount, "جلسه"),
+      detail:
+        snapshot.followUpSavedSessionsCount > 0
+          ? "برای شاگردهای دارای جلسه ذخیره، زمان جبرانی یا پیگیری مشخص شود."
+          : "جلسه ذخیره‌شده بدون پیگیری وجود ندارد.",
+      icon: FilePenLine,
+      tone: snapshot.followUpSavedSessionsCount > 0 ? "warning" : "ok",
+    },
   ];
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
       {actions.map(({ detail, icon: Icon, label, tone, value }) => (
         <article
           className="rounded-lg border border-border bg-card p-4 text-card-foreground shadow-xs"
@@ -425,7 +466,10 @@ function StudentSummaryRow({ summary }: { summary: StudentCourseSummary }) {
       <TableCell>
         <div className="flex items-center gap-2">
           <WalletCards className="size-4 text-primary" />
-          <span>{formatCount(activeCourse.sessionCount, "جلسه")}</span>
+          <span>
+            {activeCourse.title ??
+              formatCount(activeCourse.sessionCount, "جلسه")}
+          </span>
         </div>
       </TableCell>
       <TableCell>{formatNumber(summary.progress.consumedSessions)}</TableCell>
