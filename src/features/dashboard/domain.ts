@@ -26,9 +26,12 @@ export type AttendanceRecord = {
 export type Course = {
   id: string;
   studentId: string;
+  title?: string;
   sessionCount: number;
   startDate: string;
   amountPaid: number;
+  paymentDate?: string;
+  paymentReference?: string;
   attendance: AttendanceRecord[];
 };
 
@@ -36,6 +39,7 @@ export type Student = {
   id: string;
   fullName: string;
   phone: string;
+  note?: string;
   activeCourse: Course;
 };
 
@@ -48,6 +52,13 @@ export type ClassGroup = {
   startTime: string;
   endTime: string;
   studentIds: string[];
+};
+
+export type DashboardPilotData = {
+  classGroups: ClassGroup[];
+  students: Student[];
+  updatedAt: string;
+  sourceNote: string;
 };
 
 export type CourseProgress = {
@@ -82,6 +93,7 @@ export type DashboardSnapshot = {
   savedSessionsCount: number;
   burnedSessionsCount: number;
   makeupSessionsCount: number;
+  followUpSavedSessionsCount: number;
 };
 
 export const RENEWAL_WARNING_THRESHOLD = 3;
@@ -221,6 +233,10 @@ export function buildDashboardSnapshot({
     ),
     makeupSessionsCount: studentSummaries.reduce(
       (total, summary) => total + summary.progress.makeupSessions,
+      0,
+    ),
+    followUpSavedSessionsCount: studentSummaries.reduce(
+      (total, summary) => total + summary.progress.savedSessions,
       0,
     ),
   };

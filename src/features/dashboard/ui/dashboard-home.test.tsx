@@ -13,6 +13,8 @@ describe("DashboardHome", () => {
     expect(screen.getByText("دوشنبه")).toBeInTheDocument();
     expect(screen.getByText("۱ تیر ۱۴۰۵")).toBeInTheDocument();
     expect(screen.queryByText("2026-06-22")).not.toBeInTheDocument();
+    expect(screen.getByText("نسخه پایلوت مربی")).toBeInTheDocument();
+    expect(screen.getByText("داده دستی")).toBeInTheDocument();
 
     expect(
       screen.getByRole("heading", { name: "کارهای امروز مربی" }),
@@ -22,6 +24,7 @@ describe("DashboardHome", () => {
     ).toBeInTheDocument();
     expect(screen.getByText("پیگیری پرداخت یا تمدید")).toBeInTheDocument();
     expect(screen.getByText("دوره تمام‌شده")).toBeInTheDocument();
+    expect(screen.getByText("جلسات ذخیره‌شده")).toBeInTheDocument();
 
     expect(
       screen.getByRole("heading", { level: 2, name: "کلاس‌های امروز" }),

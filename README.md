@@ -34,6 +34,28 @@ A simple system that digitizes:
 
 ---
 
+## 🧪 First Pilot Version
+
+The current first-version path is a protected, read-only coach dashboard backed by one manually editable data file.
+
+Before sharing or deploying the pilot dashboard, set a strong password:
+
+```bash
+YOGAFLOW_PILOT_PASSWORD="replace-with-a-strong-password" pnpm dev
+```
+
+On Vercel, add `YOGAFLOW_PILOT_PASSWORD` as an environment variable for Preview and Production deployments. Without this variable, the app shows a setup warning instead of the dashboard.
+
+Until CRUD and database persistence are implemented, update the coach's operational data here:
+
+```bash
+src/features/dashboard/data.ts
+```
+
+That file contains students, class groups, courses, payments, attendance records, the manual data source note, and the displayed data update date.
+
+---
+
 ## 🧩 MVP Features
 
 - Create and manage courses
